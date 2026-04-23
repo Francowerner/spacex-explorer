@@ -32,9 +32,8 @@ export function FavoriteButton({ launch, className, size = "md" }: Props) {
       className={cn(
         "inline-flex items-center justify-center rounded-full border transition-colors",
         "border-zinc-200 bg-white/90 text-zinc-600 hover:text-amber-500 hover:border-amber-300",
-        "dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-300",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500",
-        active && "text-amber-500 border-amber-400 bg-amber-50 dark:bg-amber-500/10",
+        active && "text-amber-500 border-amber-400 bg-amber-50",
         size === "sm" ? "h-8 w-8" : "h-10 w-10",
         className,
       )}

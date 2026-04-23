@@ -11,7 +11,7 @@ export default function FavoritesPage() {
     <div className="space-y-4">
       <div className="space-y-1">
         <h1 className="text-2xl font-semibold tracking-tight">Favorites</h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm text-zinc-600">
           Your saved launches. Persisted locally in your browser.
         </p>
       </div>

@@ -40,9 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Claude Code session artifacts and interview-specific notes
+# Markdown notes (keep README.md tracked)
+*.md
+!README.md
+
+# Claude Code session artifacts
 .claude/
-HANDOFF.md
-INTERVIEW.md
-AGENTS.md
-CLAUDE.md

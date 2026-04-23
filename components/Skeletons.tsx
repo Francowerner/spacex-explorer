@@ -2,14 +2,13 @@ export function LaunchCardSkeleton() {
   return (
     <div
       aria-hidden
-      className="flex h-full gap-4 rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900"
+      className="flex h-full flex-col rounded-xl border border-zinc-200 bg-white"
     >
-      <div className="skeleton h-20 w-20 shrink-0 rounded-lg" />
-      <div className="flex flex-1 flex-col gap-2">
-        <div className="skeleton h-4 w-1/2 rounded" />
+      <div className="skeleton aspect-square w-full rounded-t-xl" />
+      <div className="flex flex-1 flex-col gap-2 p-3">
+        <div className="skeleton h-4 w-3/4 rounded" />
+        <div className="skeleton h-3 w-1/2 rounded" />
         <div className="skeleton h-3 w-1/3 rounded" />
-        <div className="skeleton h-3 w-full rounded" />
-        <div className="skeleton h-3 w-5/6 rounded" />
       </div>
     </div>
   );

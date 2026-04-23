@@ -19,45 +19,41 @@ function LaunchCardImpl({ launch }: Props) {
     <article className="group relative h-full">
       <Link
         href={`/launches/${launch.id}`}
-        className="flex h-full gap-4 rounded-xl border border-zinc-200 bg-white p-4 transition-colors hover:border-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-sky-500"
+        className="flex h-full flex-row overflow-hidden rounded-xl border border-zinc-200 bg-white transition-colors hover:border-sky-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:flex-col"
       >
-        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800">
+        <div className="relative aspect-square w-28 shrink-0 overflow-hidden rounded-l-xl bg-zinc-100 sm:w-full sm:rounded-l-none sm:rounded-t-xl">
           {patch ? (
             <Image
               src={patch}
-              alt=""
+              alt={`${launch.name} mission patch`}
               fill
-              sizes="80px"
-              className="object-contain p-1"
-              unoptimized
+              sizes="(max-width: 639px) 112px, (max-width: 1023px) 44vw, (max-width: 1279px) 30vw, 238px"
+              className="object-contain p-4"
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-xs text-zinc-400">
+            <div className="flex h-full w-full items-center justify-center px-1 text-center text-xs font-medium text-zinc-800">
               No patch
             </div>
           )}
-        </div>
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="truncate text-base font-semibold text-zinc-900 dark:text-zinc-50">
-              {launch.name}
-            </h3>
+          <div className="absolute left-2 top-2">
             <StatusBadge status={status} />
           </div>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        </div>
+        <div className="flex min-w-0 flex-1 flex-col justify-center gap-1 p-3 sm:justify-start">
+          <h3 className="truncate pr-1 text-sm font-semibold text-zinc-900">
+            {launch.name}
+          </h3>
+          <p className="truncate text-xs text-zinc-600">
             <time dateTime={launch.date_utc}>{formatLaunchDate(launch.date_utc)}</time>
-            {typeof launch.flight_number === "number" ? ` · Flight #${launch.flight_number}` : ""}
           </p>
-          {launch.details ? (
-            <p className="mt-1 line-clamp-2 text-sm text-zinc-600 dark:text-zinc-300">
-              {launch.details}
+          {typeof launch.flight_number === "number" ? (
+            <p className="text-[11px] uppercase tracking-wide text-zinc-600">
+              Flight #{launch.flight_number}
             </p>
-          ) : (
-            <p className="mt-1 text-sm italic text-zinc-400">No mission details available.</p>
-          )}
+          ) : null}
         </div>
       </Link>
-      <div className="absolute right-3 top-3">
+      <div className="absolute right-2 top-2">
         <FavoriteButton
           size="sm"
           launch={{
@@ -88,12 +84,10 @@ function getStatus(launch: Launch): Status {
 
 function StatusBadge({ status }: { status: Status }) {
   const styles: Record<Status, string> = {
-    upcoming: "bg-sky-500/10 text-sky-700 border-sky-200 dark:text-sky-300 dark:border-sky-800",
-    success:
-      "bg-emerald-500/10 text-emerald-700 border-emerald-200 dark:text-emerald-300 dark:border-emerald-800",
-    failure: "bg-rose-500/10 text-rose-700 border-rose-200 dark:text-rose-300 dark:border-rose-800",
-    unknown:
-      "bg-zinc-500/10 text-zinc-600 border-zinc-200 dark:text-zinc-400 dark:border-zinc-700",
+    upcoming: "border-sky-300 bg-sky-100 text-sky-950",
+    success: "border-emerald-300 bg-emerald-100 text-emerald-950",
+    failure: "border-rose-300 bg-rose-100 text-rose-950",
+    unknown: "border-zinc-300 bg-zinc-200 text-zinc-900",
   };
   const label: Record<Status, string> = {
     upcoming: "Upcoming",

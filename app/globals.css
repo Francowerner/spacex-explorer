@@ -12,13 +12,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #09090b;
-    --foreground: #f4f4f5;
-  }
-}
-
 html,
 body {
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;

@@ -14,10 +14,10 @@ export function ErrorState({
   return (
     <div
       role="alert"
-      className="flex flex-col items-center gap-3 rounded-xl border border-rose-200 bg-rose-50 p-6 text-center dark:border-rose-900/60 dark:bg-rose-950/40"
+      className="flex flex-col items-center gap-3 rounded-xl border border-rose-200 bg-rose-50 p-6 text-center"
     >
-      <h3 className="text-base font-semibold text-rose-800 dark:text-rose-200">{title}</h3>
-      <p className="max-w-md text-sm text-rose-700 dark:text-rose-300">{message}</p>
+      <h3 className="text-base font-semibold text-rose-800">{title}</h3>
+      <p className="max-w-md text-sm text-rose-700">{message}</p>
       {onRetry ? (
         <button
           type="button"
@@ -33,9 +33,9 @@ export function ErrorState({
 
 export function EmptyState({ title, message }: { title: string; message: string }) {
   return (
-    <div className="rounded-xl border border-dashed border-zinc-300 bg-white p-10 text-center dark:border-zinc-700 dark:bg-zinc-900">
+    <div className="rounded-xl border border-dashed border-zinc-300 bg-white p-10 text-center">
       <h3 className="text-base font-semibold">{title}</h3>
-      <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">{message}</p>
+      <p className="mt-2 text-sm text-zinc-600">{message}</p>
     </div>
   );
 }
