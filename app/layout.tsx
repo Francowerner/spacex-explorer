@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -22,6 +22,12 @@ export const metadata: Metadata = {
 		"Browse, filter, and save SpaceX launches. Built with Next.js, TanStack Query, and Zustand.",
 };
 
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+	viewportFit: "cover",
+};
+
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -30,20 +36,20 @@ export default function RootLayout({
 	return (
 		<html
 			lang="en"
-			className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+			className={`${geistSans.variable} ${geistMono.variable} h-auto min-h-dvh antialiased`}
 		>
 			<head>
 				<link rel="dns-prefetch" href="https://api.spacexdata.com" />
 				<link rel="preconnect" href="https://api.spacexdata.com" crossOrigin="anonymous" />
 			</head>
-			<body className="min-h-full bg-zinc-50 text-zinc-900">
+			<body className="min-h-dvh bg-zinc-50 text-zinc-900">
 				<Providers>
 					<ServiceWorkerRegistrar />
 					<a href="#main-content" className="skip-to-content">
 						Skip to content
 					</a>
-					<div className="flex min-h-screen flex-col">
-						<header className="border-b border-zinc-200/70 bg-white/80">
+					<div className="flex min-h-dvh w-full flex-col">
+						<header className="shrink-0 border-b border-zinc-200/70 bg-white/80">
 							<nav
 								className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3"
 								aria-label="Primary"
@@ -90,10 +96,13 @@ export default function RootLayout({
 								</ul>
 							</nav>
 						</header>
-						<main id="main-content" className="mx-auto w-full max-w-6xl flex-1 px-4 py-6">
+						<main
+							id="main-content"
+							className="mx-auto w-full min-w-0 max-w-6xl px-4 py-6"
+						>
 							{children}
 						</main>
-						<footer className="border-t border-zinc-200/70 py-4 text-center text-xs text-zinc-600">
+						<footer className="mt-auto shrink-0 border-t border-zinc-200/70 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] text-center text-xs text-zinc-600">
 							Data from the unofficial SpaceX REST API v4.
 						</footer>
 					</div>

@@ -63,27 +63,31 @@ export default async function LaunchDetailPage({ params }: { params: Promise<Par
         <BackToLaunchesNav className="cursor-pointer bg-transparent p-0 font-inherit text-inherit hover:underline" />
       </nav>
 
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-start">
-        <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl bg-zinc-100">
+      <header className="flex flex-row items-start gap-3 sm:gap-4">
+        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-zinc-100 sm:h-28 sm:w-28">
           {patch ? (
             <Image
               src={patch}
               alt={`${launch.name} mission patch`}
               fill
-              sizes="112px"
-              className="object-contain p-2"
+              sizes="(max-width: 639px) 80px, 112px"
+              className="object-contain p-1.5 sm:p-2"
               priority
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center px-1 text-center text-xs font-medium text-zinc-800">
+            <div className="flex h-full w-full items-center justify-center px-0.5 text-center text-[10px] font-medium leading-tight text-zinc-800 sm:px-1 sm:text-xs">
               No patch
             </div>
           )}
         </div>
-        <div className="flex-1 space-y-2">
-          <div className="flex items-start gap-3">
-            <h1 className="text-3xl font-semibold tracking-tight">{launch.name}</h1>
+        <div className="min-w-0 flex-1 space-y-2">
+          <div className="flex items-start gap-2 sm:gap-3">
+            <h1 className="min-w-0 flex-1 text-2xl font-semibold tracking-tight sm:text-3xl">
+              {launch.name}
+            </h1>
             <FavoriteButton
+              size="sm"
+              className="shrink-0"
               launch={{
                 id: launch.id,
                 name: launch.name,
